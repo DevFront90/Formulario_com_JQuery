@@ -1,25 +1,50 @@
-# Formulário com jQuery
+🔍 Como funciona o código:
+javascript
+Copiar
+Editar
+$(function() {
+  $('.form_contato').submit(function() {
+    
+    var container = $('.container'); // Seleciona o local onde os dados serão exibidos
 
-Este projeto demonstra a criação e manipulação de um formulário utilizando **HTML**, **CSS** e **jQuery**. A aplicação apresenta um formulário simples com validações e interações dinâmicas realizadas com jQuery.
+    // Captura os valores dos inputs usando o atributo "name"
+    var content = 'Nome:' + $('input[name=nome]').val() + 
+                  '<hr>Email:' + $('input[name=email]').val() + 
+                  '<hr>Telefone:' + $('input[name=telefone]').val();
 
-## 🔧 Tecnologias Utilizadas
+    // Insere os dados capturados dentro do container
+    container.html(content);
 
-- HTML5
-- CSS3
-- jQuery
+    return false; // Impede o envio tradicional do formulário (recarregar a página)
+  });
+});
+🧠 O que está acontecendo:
+$(function() {...}): Executa o código assim que o DOM estiver pronto.
 
-## 📋 Funcionalidades
+.submit(function() {...}): Captura o evento de envio do formulário.
 
-- Exibição e ocultação dinâmica do formulário.
-- Validação básica dos campos.
-- Estilização do formulário para melhor experiência do usuário.
-- Ações jQuery como `.on()`, `.submit()`, `.hide()`, `.show()` e `.val()` para manipulação dos elementos do DOM.
+$('input[name=campo]').val(): Acessa o valor preenchido pelo usuário em cada campo de input.
 
-## 🧠 Conceitos jQuery Aplicados
+container.html(content): Insere todo o conteúdo formatado (com <hr> separando) dentro do .container.
 
-- `$(document).ready()` para inicialização do DOM.
-- `.on('click')` para capturar eventos de clique.
-- `.submit()` para capturar o envio do formulário.
-- `.val()` para acessar ou definir valores dos campos.
-- `.hide()` e `.show()` para manipular visibilidade.
-- Validação de campos com lógica condicional.
+return false: Cancela o envio padrão do formulário para evitar que a página seja recarregada.
+
+🧪 Exemplo visual (simulação de resultado):
+Se o usuário preencher:
+
+Nome: João
+
+Email: joao@email.com
+
+Telefone: (24) 99999-9999
+
+O container receberá:
+
+markdown
+Copiar
+Editar
+Nome: João
+-----------------------
+Email: joao@email.com
+-----------------------
+Telefone: (24) 99999-9999
